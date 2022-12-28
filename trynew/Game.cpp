@@ -44,8 +44,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		//SDL_FreeSurface(surface);
 		// 
 		//playertex = TextureManager::LoadTexture("assets/player.png", renderer);
-		player = new Player("assets/player.png", 0, 420,242,436);
-		enemy = new Player("assets/enemy.png", 558, 420,242,436);
+		player = new Player("assets/player.png", 0, 422,242,436,'l');
+		enemy = new Player("assets/enemy.png", 560, 422,242,436,'r');
 		ball = new Ball("assets/ball.png", 0, 0,454,396);
 		background = new GameObject("assets/background.png", 0, 0,800,640);
 		//map = new Map();
