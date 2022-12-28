@@ -55,6 +55,9 @@ void Player::move(const Uint8 *keystate) {
         if (keystate[SDL_SCANCODE_RSHIFT] && !isDashing && xpos <= 396) {
             xVel = 4;
         }
+        if (keystate[SDL_SCANCODE_LALT] && ypos >= 422) {
+            yVel = -26;
+        }
     }
     if (position == 'r') {
         if (keystate[SDL_SCANCODE_LEFT] && !isDashing && xpos >= 404) {// left
@@ -63,14 +66,13 @@ void Player::move(const Uint8 *keystate) {
         if (keystate[SDL_SCANCODE_RIGHT] && !isDashing && xpos >= 400 && xpos <= 796){
             xVel = 4;
         }
+        if (keystate[SDL_SCANCODE_UP] && ypos >= 422) { // jump and from ground only
+            //Mix_PlayChannel(-1, jumpSound, 0);
+            yVel = -26;
+        }
     }
-    if (keystate[SDL_SCANCODE_LALT] && ypos >= 422) {
-        yVel = -26;
-    }
-    if (keystate[SDL_SCANCODE_UP] && ypos >= 422){ // jump and from ground only
-        //Mix_PlayChannel(-1, jumpSound, 0);
-        yVel = -26;
-    }
+    
+    
     /*if ((keystate[SDL_SCANCODE_LEFT] && keystate[SDL_SCANCODE_SPACE])) // left dash
         if ((flag == 'L' && xpos > 0 && ypos + height == GAME_HEIGHT) || (flag == 'R' && xpos > GAME_WIDTH / 2 && ypos + height == GAME_HEIGHT))
         {
