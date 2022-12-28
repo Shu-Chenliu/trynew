@@ -20,3 +20,7 @@ int main(int argc, char* argv[]) {
 	game->clean();
 	return 0;
 }
+//明天目標:
+//screen
+//輸入targetscore
+//有空ball 邊界

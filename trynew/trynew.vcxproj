@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\include;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\lib\x86;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_ttf-2.20.1\include;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\include;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_ttf-2.20.1\lib\x86;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\lib\x86;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -80,13 +80,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\include;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_ttf-2.20.1\include;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\include;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\lib\x86;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_ttf-2.20.1\lib\x86;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2_image-2.6.2\lib\x86;C:\Users\susan\OneDrive\桌面\程式\計程期末專題\SDL2\SDL2-2.24.2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,6 +139,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

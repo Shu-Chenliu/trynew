@@ -36,26 +36,14 @@ void Player::Render() {
     GameObject::Render();
 }
 void Player::move(const Uint8 *keystate) {
-    /*if (arr[SDLK_LEFT] && xpos > 404) {
-        xVel = -4;
-    }
-    if (arr[SDLK_a] && xpos <= 400 && xpos > 4) {
-        xVel = -4;
-    }
-    if (arr[SDLK_RIGHT] && xpos > 400 && xpos < 796) {
-        xVel = 4;
-    }
-    if (arr[SDLK_d] && xpos < 396 && xpos>=0) {
-        xVel = 4;
-    }*/
     if (position == 'l') {
-        if (keystate[SDL_SCANCODE_LSHIFT] && !isDashing && xpos <= 400 && xpos >= 4) {
+        if (keystate[SDL_SCANCODE_A] && !isDashing && xpos <= 400 && xpos >= 4) {
             xVel = -4;
         }
-        if (keystate[SDL_SCANCODE_RSHIFT] && !isDashing && xpos <= 396) {
+        if (keystate[SDL_SCANCODE_D] && !isDashing && xpos <= 396) {
             xVel = 4;
         }
-        if (keystate[SDL_SCANCODE_LALT] && ypos >= 422) {
+        if (keystate[SDL_SCANCODE_W] && ypos >= 422) {
             yVel = -26;
         }
     }

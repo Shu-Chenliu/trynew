@@ -6,6 +6,9 @@ public:
 	~GameObject();
 	virtual void Update();
 	virtual void Render();
+	virtual bool touchground();
+	virtual void reset();
+	virtual char getwin();
 	//void move(const Uint8 *keystate);
 	//void stop();
 protected:

@@ -30,3 +30,12 @@ void GameObject::Update() {
 void GameObject::Render() {
 	SDL_RenderCopy(Game::renderer, objTexture, &srcR, &destR);
 }
+bool GameObject::touchground() {
+	return false;
+}
+void GameObject::reset() {
+	return;
+}
+char GameObject::getwin() {
+	return ' ';
+}

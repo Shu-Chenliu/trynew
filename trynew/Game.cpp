@@ -5,6 +5,7 @@
 //#include"Map.h"//4
 #include"Ball.h"
 #include"Player.h"
+#include"Score.h"
 using namespace std;
 //SDL_Texture* playertex;
 //SDL_Rect srcR, destR;
@@ -12,12 +13,14 @@ GameObject* background;
 Player* player;
 Player* enemy;
 GameObject* ball;
+Score* score1;
+Score* score2;
 //Map* map;
 //bool key[322] = { false };
 SDL_Renderer* Game::renderer = nullptr;
 const Uint8* keystate = SDL_GetKeyboardState(NULL);
 Game::Game() {
-
+	target = 3;
 }
 Game::~Game() {
 
@@ -49,6 +52,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		ball = new Ball("assets/ball.png", 0, 0,454,396);
 		background = new GameObject("assets/background.png", 0, 0,800,640);
 		//map = new Map();
+		score1 = new Score("0", 10,10,50, 50);
+		score2 = new Score("0", 750, 10, 50, 50);
 	}
 	else {
 		isrunning = false;
@@ -83,6 +88,15 @@ void Game::update() {
 	player->Update();
 	enemy->Update();
 	ball->Update();
+	if (ball->touchground()) {
+		ball->reset();
+		if (ball->getwin() == 'l') {
+			score1->Update();
+		}
+		else {
+			score2->Update();
+		}
+	}
 }
 void Game::render() {
 	SDL_RenderClear(renderer);
@@ -92,6 +106,8 @@ void Game::render() {
 	player->Render();
 	enemy->Render();
 	ball->Render();
+	score1->Render();
+	score2->Render();
 	SDL_RenderPresent(renderer);
 }
 void Game::clean() {

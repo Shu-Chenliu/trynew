@@ -16,6 +16,7 @@ public:
 	}
 	static SDL_Renderer* renderer;
 private:
+	int target;
 	int cnt = 0;
 	bool isrunning;
 	SDL_Window* window;
