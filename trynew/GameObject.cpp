@@ -18,6 +18,21 @@ GameObject::GameObject(const char* texturesheet, int x, int y,int w,int h) {
     xVel = 0;
     yVel = 0;
 }
+GameObject::GameObject(const char* texturesheet, int x, int y, int w, int h,double ww,double hh) {
+	objTexture = TextureManager::LoadTexture(texturesheet);
+	xpos = x;
+	ypos = y;
+	srcR.h = h;
+	srcR.w = w;
+	srcR.x = 0;
+	srcR.y = 0;
+	destR.x = xpos;
+	destR.y = ypos;
+	destR.w = srcR.w*ww;
+	destR.h = srcR.h*hh;
+	xVel = 0;
+	yVel = 0;
+}
 GameObject::~GameObject() {
 
 }

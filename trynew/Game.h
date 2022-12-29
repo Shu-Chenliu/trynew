@@ -2,6 +2,7 @@
 #include"SDL.h"
 #include"SDL_image.h"
 #include<iostream>
+using namespace std;
 class Game {
 public:
 	Game();
@@ -14,9 +15,23 @@ public:
 	bool runnung() {
 		return isrunning;
 	}
+	bool startmode() {
+		return start;
+	}
+	void displaystartscreen();
+	bool optionmode() {
+		return option;
+	}
+	void displayoptionscreen();
+	bool istarget() {
+		return target;
+	}
+	void displaytargetscreen();
 	static SDL_Renderer* renderer;
 private:
-	int target;
+	bool start = true;
+	bool option = false;
+	bool target = false;
 	int cnt = 0;
 	bool isrunning;
 	SDL_Window* window;

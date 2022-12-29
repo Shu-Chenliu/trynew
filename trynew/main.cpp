@@ -7,6 +7,15 @@ int main(int argc, char* argv[]) {
 	int frameTime;
 	game = new Game();
 	game->init("2dengine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, false);
+	while (game->startmode()){
+		game->displaystartscreen();
+		while (game->optionmode()) {
+			game->displayoptionscreen();
+		}
+		while (game->istarget()) {
+			game->displaytargetscreen();
+		}
+	}
 	while (game->runnung()) {
 		frameStart = SDL_GetTicks();//回傳程式執行時間
 		game->handleevents();
@@ -21,6 +30,7 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 //明天目標:
-//screen
-//輸入targetscore
 //有空ball 邊界
+//音樂
+//改字體
+//換背景

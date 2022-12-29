@@ -6,6 +6,9 @@
 #include"Ball.h"
 #include"Player.h"
 #include"Score.h"
+#include"Welcome.h"
+#include"OptionScreen.h"
+#include"TargetScore.h"
 using namespace std;
 //SDL_Texture* playertex;
 //SDL_Rect srcR, destR;
@@ -15,12 +18,15 @@ Player* enemy;
 GameObject* ball;
 Score* score1;
 Score* score2;
+StartScreen* screen;
+OptionScreen* op;
+TargetScreen* tg;
 //Map* map;
 //bool key[322] = { false };
 SDL_Renderer* Game::renderer = nullptr;
 const Uint8* keystate = SDL_GetKeyboardState(NULL);
 Game::Game() {
-	target = 3;
+
 }
 Game::~Game() {
 
@@ -52,12 +58,20 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		ball = new Ball("assets/ball.png", 0, 0,454,396);
 		background = new GameObject("assets/background.png", 0, 0,800,640);
 		//map = new Map();
-		score1 = new Score("0", 10,10,50, 50);
-		score2 = new Score("0", 750, 10, 50, 50);
+		score1 = new Score("0", 10,10,50, 50,"black");
+		score2 = new Score("0", 725, 10, 50, 50,"red");
+		screen = new StartScreen(renderer,"target score","option","start","black");
+		op = new OptionScreen(renderer, "volleyball","return", "black");
+		tg = new TargetScreen(renderer,"3","black");
 	}
 	else {
 		isrunning = false;
 	}
+}
+void Game::displaystartscreen() {
+	screen->handleEvents(keystate,start,option,target);
+	screen->update();
+	screen->render();
 }
 void Game::handleevents() {
 	SDL_Event event;
@@ -115,4 +129,14 @@ void Game::clean() {
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	cout << "game cleaned" << endl;
+}
+void Game::displayoptionscreen() {
+	op->handleEvents(keystate, start,option,target);
+	op->update();
+	op->render();
+}
+void Game::displaytargetscreen() {
+	tg->handleEvents(keystate, start, option,target);
+	tg->update();
+	tg->render();
 }
