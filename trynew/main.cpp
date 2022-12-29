@@ -34,3 +34,4 @@ int main(int argc, char* argv[]) {
 //音樂
 //改字體
 //換背景
+//option

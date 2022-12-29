@@ -1,17 +1,17 @@
 #include "Player.h"
 #include"GameObject.h"
 Player::Player(const char* texturesheet, int x, int y, int w, int h,char a) :GameObject(texturesheet, x, y, w, h) {
-    destR.w = srcR.w * 0.5;
-    destR.h = srcR.h * 0.5;
+    destR.w = srcR.w * 0.15;
+    destR.h = srcR.h * 0.15;
     position = a;
 }
 void Player::Update() {
     yVel += 1;
     xpos += xVel;
     ypos += yVel;
-    if (ypos >= 430) {
+    if (ypos >= 490) {
         yVel = 0;
-        ypos = 430;
+        ypos = 490;
     }
     if (position == 'l') {
         if (xpos >= 280 && xVel > 0) {
@@ -22,11 +22,11 @@ void Player::Update() {
         }
     }
     if (position == 'r') {
-        if (xpos <= 400 && xVel < 0) {
-            xpos = 400;
+        if (xpos <= 413 && xVel < 0) {
+            xpos = 413;
         }
-        if (xpos >= 680 && xVel > 0) {
-            xpos = 680;
+        if (xpos >= 682 && xVel > 0) {
+            xpos = 682;
         }
     }
     destR.x = xpos;
@@ -37,24 +37,24 @@ void Player::Render() {
 }
 void Player::move(const Uint8 *keystate) {
     if (position == 'l') {
-        if (keystate[SDL_SCANCODE_A] && !isDashing && xpos <= 400 && xpos >= 4) {
+        if (keystate[SDL_SCANCODE_A] && !isDashing && xpos <= 284 && xpos >= 4) {
             xVel = -4;
         }
-        if (keystate[SDL_SCANCODE_D] && !isDashing && xpos <= 396) {
+        if (keystate[SDL_SCANCODE_D] && !isDashing && xpos <= 280) {
             xVel = 4;
         }
-        if (keystate[SDL_SCANCODE_W] && ypos >= 422) {
+        if (keystate[SDL_SCANCODE_W] && ypos >= 490) {
             yVel = -26;
         }
     }
     if (position == 'r') {
-        if (keystate[SDL_SCANCODE_LEFT] && !isDashing && xpos >= 404) {// left
+        if (keystate[SDL_SCANCODE_LEFT] && !isDashing && xpos >= 417) {// left
             xVel = -4;
         }
-        if (keystate[SDL_SCANCODE_RIGHT] && !isDashing && xpos >= 400 && xpos <= 796){
+        if (keystate[SDL_SCANCODE_RIGHT] && !isDashing && xpos >= 413 && xpos <= 682){
             xVel = 4;
         }
-        if (keystate[SDL_SCANCODE_UP] && ypos >= 422) { // jump and from ground only
+        if (keystate[SDL_SCANCODE_UP] && ypos >= 490) { // jump and from ground only
             //Mix_PlayChannel(-1, jumpSound, 0);
             yVel = -26;
         }
