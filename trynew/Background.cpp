@@ -51,11 +51,11 @@ void BackgroundScreen::handleEvents(const Uint8* keystate, bool& start, bool& op
         if (keystate[SDL_SCANCODE_DOWN] && arrow->getypos() == 0) {
             arrow->setypos(arrow->getypos() + 120);
         }
-        if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 240)
+        if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 120)
         {
             arrow->setypos(arrow->getypos() - 120);
         }
-        if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 120)
+        if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 240)
         {
             arrow->setypos(arrow->getypos() - 120);
         }
