@@ -15,8 +15,12 @@ int main(int argc, char* argv[]) {
 		while (game->istarget()) {
 			game->displaytargetscreen();
 		}
+		while (game->isbackground()) {
+			game->displaybackground();
+		}
 	}
-	while (game->runnung()) {
+	game->loadpicture();
+	while (game->running()) {
 		frameStart = SDL_GetTicks();//回傳程式執行時間
 		game->handleevents();
 		game->update();
@@ -30,8 +34,5 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 //明天目標:
-//有空ball 邊界
 //音樂
-//改字體
-//換背景
-//option
+//結束

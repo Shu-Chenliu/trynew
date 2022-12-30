@@ -10,7 +10,7 @@ Ball::Ball(const char* texturesheet, int x, int y,int w,int h) :GameObject(textu
 	destR.w = srcR.w * 0.2;
 	destR.h = srcR.h * 0.2;
 	win = 'l';
-    radius = 50;
+    radius = 47;
 }
 void Ball::Update() {
 	yVel += a;
@@ -39,21 +39,20 @@ bool Ball::touchground() {
 }
 bool Ball::checkCollision(Player* p1, Player* p2, const Uint8* keystate)
 {
-    int ballX = getxpos()+50;
-    int ballY = getypos()+50;
-    int p1X = p1->getxpos()+60;
-    int p1Y = p1->getypos()+92;
-    int p2X = p2->getxpos()+60;
-    int p2Y = p2->getypos()+92;
+    int ballX = getxpos()+47;
+    int ballY = getypos()+47;
+    int p1X = p1->getxpos()+67;
+    int p1Y = p1->getypos()+67;
+    int p2X = p2->getxpos()+67;
+    int p2Y = p2->getypos()+67;
 
     float p1RealDistance = sqrt(pow(ballX - p1X, 2) + pow(ballY - p1Y, 2));
-    float p1TouchedDistance = getradius() + 100;
+    float p1TouchedDistance = getradius() + 67;
     float p2RealDistance = sqrt(pow(ballX - p2X, 2) + pow(ballY - p2Y, 2));
-    float p2TouchedDistance = getradius() + 100;
+    float p2TouchedDistance = getradius() + 67;
 
     //if the ball touches the player..
-    if (p1RealDistance <= p1TouchedDistance)
-    {
+    if (p1RealDistance <= p1TouchedDistance) {
         if (ballX < p1X)
         {
             xVel = (p1X - ballX) / 9;
@@ -172,26 +171,41 @@ bool Ball::checkCollision(Player* p1, Player* p2, const Uint8* keystate)
         return true;
     }*/
 
-    // if the ball touches the top of the pole
     
-    // if the ball touches the left side of the pole
-    if (ypos +47.5 >= 235) {
-        if (xpos >= 352 && xVel>0) {
+    
+    
+    /*if (ypos + 47.5 >= 255) {
+        if (xpos >= 345 && xVel>0) {
             xVel = -xVel;
             return true;
         }
-        if (xpos <= 413 && xVel < 0) {
+        if (xpos <= 405 && xVel < 0) {// if the ball touches the right side of the pole
             xVel = -xVel;
             return true;
         }
     }
-    else if (ypos < 235 && yVel<0) {
+    else if (ypos < 255 && yVel<0) {// if the ball touches the top of the pole
         if (xpos >= 352 && xpos >= 413) {
             yVel = -yVel;
             return true;
         }
+    }*/
+    if (xpos <= 370 && xpos >= 310 && ypos >= 245 && yVel > 0 && xVel > 0) {
+        yVel = -yVel;
+        return true;
     }
-    // if the ball touches the right side of the pole
+    if (xpos <= 405 && xpos >= 345 && ypos >= 245 && yVel > 0 && xVel < 0) {
+        yVel = -yVel;
+        return true;
+    }
+    if (xpos <= 350 && xpos >= 280 && xVel > 0 && ypos >= 270) {
+        xVel = -xVel;
+        return true;
+    }
+    if (xpos >= 365 && xpos <= 425 && xVel < 0 && ypos >= 270) {
+        xVel = -xVel;
+        return true;
+    }
     
     if (xpos >= 706 && xVel > 0) {
         xVel = -xVel;

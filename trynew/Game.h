@@ -12,7 +12,7 @@ public:
 	void update();
 	void render();
 	void clean();
-	bool runnung() {
+	bool running() {
 		return isrunning;
 	}
 	bool startmode() {
@@ -26,13 +26,22 @@ public:
 	bool istarget() {
 		return target;
 	}
+	bool isbackground() {
+		return bg;
+	}
 	void displaytargetscreen();
+	void displaybackground();
+	void loadpicture();
 	static SDL_Renderer* renderer;
 private:
 	bool start = true;
 	bool option = false;
 	bool target = false;
 	int cnt = 0;
+	int p1 = 0;
+	int p2 = 0;
+	bool bg = false;
+	int whichbackground = 0;
 	bool isrunning;
 	SDL_Window* window;
 	//SDL_Renderer* renderer;

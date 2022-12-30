@@ -11,17 +11,17 @@ Screen::Screen(SDL_Renderer* _renderer)
 
     renderer = _renderer;
     screen = new GameObject("assets/startbg.jpg", 0, 0, 800, 640);
-    arrow = new GameObject("assets/arrow.png", 0, 0, 517, 483,0.1,0.1);
+    //arrow = new GameObject("assets/arrow.png", 0, 0, 517, 483,0.1,0.1);
 }
 
 Screen::Screen()
 {
-    cout << "(default)Screen constructor()!" << std::endl;
+    cout << "(default)Screen constructor()!" << endl;
 }
 
 Screen::~Screen()
 {
-    cout << "Screen deconstrouctor()" << std::endl;
+    cout << "Screen deconstrouctor()" << endl;
     delete screen;
     delete arrow;
 }

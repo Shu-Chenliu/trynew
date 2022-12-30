@@ -22,6 +22,12 @@ public:
 	virtual void setypos(int y) {
 		ypos = y;
 	}
+	virtual int getxVel() {
+		return xVel;
+	}
+	virtual int getyVel() {
+		return yVel;
+	}
 	//void move(const Uint8 *keystate);
 	//void stop();
 protected:

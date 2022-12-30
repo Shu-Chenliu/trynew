@@ -1,4 +1,5 @@
 #include"TextureManager.h"
+#include<string>
 using namespace std;
 TTF_Font* Sans = nullptr;
 SDL_Texture* TextureManager::LoadTexture(const char* texture) {
@@ -28,7 +29,6 @@ SDL_Texture* TextureManager::loadFont(const string& text,const char* color){
     else if (color == "black") {
         c = { 0,0,0 };
     }
-    
     SDL_Surface* tempSurface = TTF_RenderText_Solid(Sans, str, c);
     if (tempSurface == NULL) {
         cout << "fonts not loaded: " << SDL_GetError() << endl;
