@@ -17,7 +17,7 @@ BackgroundScreen::BackgroundScreen(SDL_Renderer* _renderer, string st, string st
     //objTexture2 = TextureManager::loadFont("player2",color);
     arrow = new GameObject("assets/arrow.png", 0, 0, 517, 483, 0.1, 0.1);
     //arrow2 = new GameObject("assets/arrow.png", 400, 0, 517, 483, 0.1, 0.1);
-    screen = new GameObject("assets/startbg.jpg", 0, 0, 800, 640);
+    screen = new GameObject("assets/backgroundop.png", 0, 0, 800, 640);
     srcR.x = 0;
     srcR.y = 0;
     srcR.w = 400;

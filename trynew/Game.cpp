@@ -181,7 +181,7 @@ void Game::loadpicture() {
 		background = new GameObject("assets/background.png", 0, 0, 800, 640);
 		break;
 	case 1:
-		background = new GameObject("assets/startbg.png", 0, 0, 800, 640);
+		background = new GameObject("assets/background2.png", 0, 0, 800, 640);
 		break;
 	case 2:
 		background = new GameObject("assets/startbg.png", 0, 0, 800, 640);

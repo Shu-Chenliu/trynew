@@ -17,7 +17,7 @@ StartScreen::StartScreen(SDL_Renderer* _renderer,string st1,string st2,string st
     const char* texture3 = st3.c_str();
     objTexture3 = TextureManager::loadFont(texture3, color);*/
     arrow = new GameObject("assets/arrow.png", 0, 100, 517, 483, 0.1, 0.1);
-    screen = new GameObject("assets/startbg.jpg", 0, 0, 800, 640);
+    screen = new GameObject("assets/start.png", 0, 0, 800, 640);
     srcR1.x = 0;
     srcR1.y = 0;
     srcR1.w = 400;
