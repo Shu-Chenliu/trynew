@@ -12,8 +12,10 @@ TargetScreen::TargetScreen(SDL_Renderer* _renderer, string st1,const char* color
     cout << "targetScreen constructor()!" << endl;
     const char* texture1 = st1.c_str();
     objTexture1 = TextureManager::loadFont(texture1, color);
-    const char* texture2 = "target score :";
-    objTexture2 = TextureManager::loadFont(texture2, color);
+    //objTexture2 = TextureManager::LoadTexture("targetscore.png");
+    //const char* texture2 = "target score :";
+    //objTexture2 = TextureManager::loadFont(texture2, color);
+    screen = new GameObject("assets/targetscore.png", 0, 0, 800, 640);
     srcR1.x = 0;
     srcR1.y = 0;
     srcR1.w = 40;

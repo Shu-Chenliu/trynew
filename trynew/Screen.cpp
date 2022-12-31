@@ -10,7 +10,7 @@ Screen::Screen(SDL_Renderer* _renderer)
     cout << "(rendered)Screen constructor()!" << endl;
 
     renderer = _renderer;
-    screen = new GameObject("assets/startbg.jpg", 0, 0, 800, 640);
+    //screen = new GameObject("assets/startbg.jpg", 0, 0, 800, 640);
     //arrow = new GameObject("assets/arrow.png", 0, 0, 517, 483,0.1,0.1);
 }
 

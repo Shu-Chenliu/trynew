@@ -56,7 +56,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		// 
 		//playertex = TextureManager::LoadTexture("assets/player.png", renderer);
 		
-		ball = new Ball("assets/ball.png", 200, 0,474,474);
+		ball = new Ball("assets/ball-remove.png", 200, 0,474,474);
 		
 		//map = new Map();
 		score1 = new Score("0", 10,10,50, 50,"black");
@@ -152,26 +152,26 @@ void Game::displaybackground() {
 void Game::loadpicture() {
 	switch (p1) {
 	case 0:
-		player = new Player("assets/enemy.png", 0, 540, 781, 997, 'l');
+		player = new Player("assets/player1-1.png", 0, 540, 781, 997, 'l');
 		break;
 	case 1:
-		player = new Player("assets/ball.png", 0, 540, 781, 997, 'l');
+		player = new Player("assets/player1-2.png", 0, 540, 781, 997, 'l');
 		break;
 	case 2:
-		player = new Player("assets/player1.png", 0, 540, 781, 997, 'l');
+		player = new Player("assets/player1-3.png", 0, 540, 781, 997, 'l');
 		break;
 	default:
 		break;
 	}
 	switch (p2) {
 	case 0:
-		enemy = new Player("assets/enemy1.png", 562, 540, 781, 997, 'r');
+		enemy = new Player("assets/player2-1.png", 562, 540, 781, 997, 'r');
 		break;
 	case 1:
-		enemy = new Player("assets/ball.png", 562, 540, 781, 997, 'r');
+		enemy = new Player("assets/player2-2.png", 562, 540, 781, 997, 'r');
 		break;
 	case 2:
-		enemy = new Player("assets/player.png", 562, 540, 781, 997, 'r');
+		enemy = new Player("assets/player2-3.png", 562, 540, 781, 997, 'r');
 		break;
 	default:
 		break;
