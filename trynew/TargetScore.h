@@ -9,6 +9,9 @@ public:
     virtual void handleEvents(const Uint8* keystate, bool& start, bool& option,bool& target,bool& bg);
     virtual void update() override;
     virtual void render() override;
+    int getTarget() {
+        return t;
+    }
 private:
     SDL_Texture* objTexture1;
     SDL_Texture* objTexture2;

@@ -22,8 +22,8 @@ TargetScreen::TargetScreen(SDL_Renderer* _renderer, string st1,const char* color
     srcR1.h = 50;
     destR1.x = 150;
     destR1.y = 100;
-    destR1.w = 160;
-    destR1.h = 200;
+    destR1.w = 150;
+    destR1.h = 250;
     srcR2.x = 0;
     srcR2.y = 0;
     srcR2.w = 400;
@@ -44,7 +44,7 @@ void TargetScreen::handleEvents(const Uint8* keystate, bool& start, bool& option
     SDL_WaitEvent(&event);
     switch (event.type) {
     case SDL_KEYDOWN:
-        if (keystate[SDL_SCANCODE_DOWN] && t > 0) {
+        if (keystate[SDL_SCANCODE_DOWN] && t > 1) {
             t--;
         }
         if (keystate[SDL_SCANCODE_UP] && t < 25){

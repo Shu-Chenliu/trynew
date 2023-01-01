@@ -7,7 +7,7 @@ using namespace std;
 const int MODE_WIDTH = 150;
 const int MODE_HEIGHT = 50;
 
-StartScreen::StartScreen(SDL_Renderer* _renderer,string st1,string st2,string st3, const char* color) : Screen(_renderer)
+StartScreen::StartScreen(SDL_Renderer* _renderer, string st1, string st2, string st3, const char* color) : Screen(_renderer)
 {
     cout << "StartScreen constructor()!" << endl;
     /*const char* texture1 = st1.c_str();
@@ -16,7 +16,7 @@ StartScreen::StartScreen(SDL_Renderer* _renderer,string st1,string st2,string st
     objTexture2 = TextureManager::loadFont(texture2, color);
     const char* texture3 = st3.c_str();
     objTexture3 = TextureManager::loadFont(texture3, color);*/
-    arrow = new GameObject("assets/arrow.png", 0, 100, 517, 483, 0.1, 0.1);
+    arrow = new GameObject("assets/arrow.png", 5, 280, 517, 483, 0.1, 0.1);
     screen = new GameObject("assets/start.png", 0, 0, 800, 640);
     srcR1.x = 0;
     srcR1.y = 0;
@@ -49,7 +49,7 @@ StartScreen::StartScreen(SDL_Renderer* _renderer,string st1,string st2,string st
     destR4.x = 80;
     destR4.y = -20;
     destR4.w = 300;
-    destR4.h=100;
+    destR4.h = 100;
 }
 
 StartScreen::~StartScreen()
@@ -57,48 +57,58 @@ StartScreen::~StartScreen()
     cout << "StartScreen deconstructor()!" << endl;
 }
 
-void StartScreen::handleEvents(const Uint8* keystate,bool &start,bool &option,bool& target,bool& bg){
+void StartScreen::handleEvents(const Uint8* keystate, bool& start, bool& option, bool& target, bool& bg) {
     SDL_Event event;
     SDL_WaitEvent(&event);
     switch (event.type) {
     case SDL_KEYDOWN:
-        if (keystate [SDL_SCANCODE_DOWN]&& arrow->getypos() == 220) {
-            arrow->setypos(arrow->getypos() + 60);
+        if (keystate[SDL_SCANCODE_DOWN] && arrow->getypos() == 280) {
+            //cout << "D280 pos:" << arrow->getypos() << endl;
+            arrow->setypos(arrow->getypos() + 90);
         }
-        if (keystate[SDL_SCANCODE_DOWN] && arrow->getypos() == 160) {
-            arrow->setypos(arrow->getypos() + 60);
+        else if (keystate[SDL_SCANCODE_DOWN] && arrow->getypos() == 370) {
+            //cout << "D370 pos:" << arrow->getypos() << endl;
+            arrow->setypos(arrow->getypos() + 87);
         }
-        if (keystate[SDL_SCANCODE_DOWN] && arrow->getypos() == 100) {
-            arrow->setypos(arrow->getypos() + 60);
+        else if (keystate[SDL_SCANCODE_DOWN] && arrow->getypos() == 457) {
+            //cout << "D455 pos:" << arrow->getypos() << endl;
+            arrow->setypos(arrow->getypos() + 90);
         }
-        if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 160){
-            arrow->setypos(arrow->getypos() - 60);
+        else if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 547) {
+            //cout << "540U pos:" << arrow->getypos() << endl;
+            arrow->setypos(arrow->getypos() - 90);
         }
-        if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 220){
-            arrow->setypos(arrow->getypos() - 60);
+        else if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 457) {
+            //cout << "455U pos:" << arrow->getypos() << endl;
+            arrow->setypos(arrow->getypos() - 87);
         }
-        if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 280) {
-            arrow->setypos(arrow->getypos() - 60);
+        else if (keystate[SDL_SCANCODE_UP] && arrow->getypos() == 370) {
+            //cout << "370U pos:" << arrow->getypos() << endl;
+            arrow->setypos(arrow->getypos() - 90);
         }
-        if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 100) {
+        else if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 280) {
+            //cout << "1pos:" << arrow->getypos() << endl;
             target = true;
             start = false;
             option = false;
             bg = false;
         }
-        if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 160) {
+        else if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 370) {
+            //cout << "2pos:" << arrow->getypos() << endl;
             option = true;
             start = false;
             target = false;
             bg = false;
         }
-        if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 220) {
+        else if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 457) {
+            //cout << "3pos:" << arrow->getypos() << endl;
             start = false;
             option = false;
             target = false;
             bg = true;
         }
-        if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 280) {
+        else if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 547) {
+            //cout << "4pos:" << arrow->getypos() << endl;
             start = false;
             option = false;
             target = false;
@@ -112,7 +122,7 @@ void StartScreen::handleEvents(const Uint8* keystate,bool &start,bool &option,bo
     }
 }
 
-void StartScreen::update(){
+void StartScreen::update() {
     screen->Update();
     arrow->Update();
 }

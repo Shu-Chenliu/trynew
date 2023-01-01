@@ -12,6 +12,12 @@ Ball::Ball(const char* texturesheet, int x, int y,int w,int h) :GameObject(textu
 	win = 'l';
     radius = 47;
 }
+Ball::~Ball() {
+    cout << "Ball deconstructor()" << endl;
+    Mix_FreeChunk(scoresound);
+    scoresound = NULL;
+    cout << "free sound" << endl;
+}
 void Ball::Update() {
 	yVel += a;
 	ypos += yVel;
@@ -26,6 +32,11 @@ void Ball::Update() {
     }
 }
 bool Ball::touchground() {
+    scoresound = Mix_LoadWAV("assets/scoresound.ogg");
+    if (scoresound == NULL)
+    {
+        printf("Failed to load low sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+    }
 	if (ypos > 540) {
 		if (xpos <= 352) {
 			win = 'r';
@@ -33,6 +44,7 @@ bool Ball::touchground() {
 		else {
 			win = 'l';
 		}
+        Mix_PlayChannel(-1, scoresound, 0);
 		return true;
 	}
 	return false;

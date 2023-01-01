@@ -5,6 +5,12 @@ Player::Player(const char* texturesheet, int x, int y, int w, int h,char a) :Gam
     destR.h = srcR.h * 0.15;
     position = a;
 }
+Player::~Player() {
+    cout << "player deconstructor()" << endl;
+    Mix_FreeChunk(jumpsound);
+    jumpsound = NULL;
+    cout << "free  jumpsound" << endl;
+}
 void Player::Update() {
     yVel += 1;
     xpos += xVel;
@@ -44,7 +50,13 @@ void Player::move(const Uint8 *keystate) {
             xVel = 4;
         }
         if (keystate[SDL_SCANCODE_W] && ypos >= 490) {
+            jumpsound = Mix_LoadWAV("assets/jumpsound.ogg");
+            if (jumpsound == NULL)
+            {
+                printf("Failed to load low sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+            }
             yVel = -26;
+            Mix_PlayChannel(-1, jumpsound, 0);
         }
     }
     if (position == 'r') {
@@ -56,6 +68,13 @@ void Player::move(const Uint8 *keystate) {
         }
         if (keystate[SDL_SCANCODE_UP] && ypos >= 490) { // jump and from ground only
             //Mix_PlayChannel(-1, jumpSound, 0);
+            jumpsound = Mix_LoadWAV("assets/jumpsound.ogg");
+            if (jumpsound == NULL)
+            {
+                printf("Failed to load low sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+            }
+            yVel = -26;
+            Mix_PlayChannel(-1, jumpsound, 0);
             yVel = -26;
         }
     }

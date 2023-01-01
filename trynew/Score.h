@@ -9,6 +9,9 @@ public:
 	~Score();
 	void Update();
 	void Render();
+	int score() {
+		return s;
+	}
 private:
 	const char* c;
 	int s;

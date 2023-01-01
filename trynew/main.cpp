@@ -8,6 +8,7 @@ int main(int argc, char* argv[]) {
 	game = new Game();
 	game->init("2dengine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, false);
 	while (game->startmode()){
+		game->music1();
 		game->displaystartscreen();
 		while (game->optionmode()) {
 			game->displayoptionscreen();
@@ -20,10 +21,18 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	game->loadpicture();
+	game->music2();
+	int target = game->loadTarget();
 	while (game->running()) {
 		frameStart = SDL_GetTicks();//回傳程式執行時間
 		game->handleevents();
 		game->update();
+		if (target == game->loadscore1()) {
+			game->end();
+		}
+		else if (target == game->loadscore2()) {
+			game->end();
+		}
 		game->render();
 		frameTime = SDL_GetTicks() - frameStart;
 		if (frameDelay > frameTime) {
@@ -34,5 +43,4 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 //明天目標:
-//音樂
 //結束

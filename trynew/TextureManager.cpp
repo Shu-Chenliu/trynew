@@ -17,7 +17,7 @@ SDL_Texture* TextureManager::loadFont(const string& text,const char* color){
         TTF_Init();
     }
     if (!Sans) {
-        Sans = TTF_OpenFont("assets/TEMPSITC.TTF", 24);
+        Sans = TTF_OpenFont("assets/COOPBL.TTF", 24);
     }
     if (!Sans) {
         cout << "fonts error: " << TTF_GetError() << endl;

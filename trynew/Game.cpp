@@ -28,7 +28,14 @@ BackgroundScreen* b;
 SDL_Renderer* Game::renderer = nullptr;
 const Uint8* keystate = SDL_GetKeyboardState(NULL);
 Game::Game() {
-
+	srcR.x = 0;
+	srcR.y = 0;
+	srcR.w = 400;
+	srcR.h = 200;
+	destR.x = 100;
+	destR.y = 100;
+	destR.w = 400;
+	destR.h = 200;
 }
 Game::~Game() {
 
@@ -69,6 +76,21 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	else {
 		isrunning = false;
 	}
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
+	else
+	{
+		cout << "music-on" << endl;
+		bgm = Mix_LoadMUS("assets/start_music.ogg");
+		play_mus = Mix_LoadMUS("assets/play_music.ogg");
+		Mix_VolumeMusic(70);
+	}
+}
+void Game::music1() {
+	Mix_PlayMusic(bgm, -1);
+}
+void Game::music2() {
+	Mix_PlayMusic(play_mus, -1);
 }
 void Game::displaystartscreen() {
 	screen->handleEvents(keystate,start,option,target,bg);
@@ -117,6 +139,7 @@ void Game::update() {
 	}
 }
 void Game::render() {
+	cout << "render" << endl;
 	SDL_RenderClear(renderer);
 	//map->DrawMap();
 	background->Render();
@@ -126,12 +149,21 @@ void Game::render() {
 	ball->Render();
 	score1->Render();
 	score2->Render();
+	SDL_RenderCopy(renderer, objTexture1, &srcR, &destR);
 	SDL_RenderPresent(renderer);
+	if (isrunning == false) {
+		SDL_Delay(4000);
+	}
 }
 void Game::clean() {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
+	Mix_FreeMusic(bgm);
+	bgm = NULL;
+	Mix_FreeMusic(play_mus);
+	play_mus = NULL;
 	SDL_Quit();
+	Mix_Quit();
 	cout << "game cleaned" << endl;
 }
 void Game::displayoptionscreen() {
@@ -178,16 +210,38 @@ void Game::loadpicture() {
 	}
 	switch (whichbackground) {
 	case 0:
-		background = new GameObject("assets/background.png", 0, 0, 800, 640);
+		background = new GameObject("assets/background1.png", 0, 0, 800, 640);
 		break;
 	case 1:
 		background = new GameObject("assets/background2.png", 0, 0, 800, 640);
 		break;
 	case 2:
-		background = new GameObject("assets/startbg.png", 0, 0, 800, 640);
+		background = new GameObject("assets/background3.png", 0, 0, 800, 640);
 		break;
 	default:
 		break;
 	}
 	
+}
+int Game::loadTarget() {
+	return tg->getTarget();
+}
+int Game::loadscore1() {
+	return score1->score();
+}
+int Game::loadscore2() {
+	return score2->score();
+}
+void Game::end() {
+	cout << "end" << endl;
+	if (loadTarget() == loadscore1()) {
+		objTexture1 = TextureManager::loadFont("player1 wins!!", "black");
+		cout << "player1" << endl;
+	}
+	else if (loadTarget() == loadscore2()) {
+		objTexture1 = TextureManager::loadFont("player2 wins!!", "black");
+		cout << "player2" << endl;
+	}
+	isrunning = false;
+	return;
 }

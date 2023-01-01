@@ -8,6 +8,7 @@ public:
 	void Render();
 	void move(const Uint8* keystate);
 	void stop(const Uint8* keystate);
+	Mix_Chunk* jumpsound = NULL;
 private:
 	char position;
 };

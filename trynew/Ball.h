@@ -24,5 +24,6 @@ public:
 	}
 	void reset();
 	char getwin();
+	Mix_Chunk* scoresound = NULL;
 };
 
