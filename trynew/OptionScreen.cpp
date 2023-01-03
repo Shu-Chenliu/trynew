@@ -11,10 +11,6 @@ const int MODE_HEIGHT = 50;
 OptionScreen::OptionScreen(SDL_Renderer* _renderer, string st, string st2, const char* color) : Screen(_renderer)
 {
     cout << "opScreen constructor()!" << endl;
-    //const char* texture1 = st.c_str();
-    //objTexture = TextureManager::loadFont("player1",color);
-    //const char* texture2 = st2.c_str();
-    //objTexture2 = TextureManager::loadFont("player2",color);
     arrow = new GameObject("assets/arrow.png", 15, 295, 517, 483, 0.1, 0.1);
     arrow2 = new GameObject("assets/arrow.png", 400, 295, 517, 483, 0.1, 0.1);
     screen = new GameObject("assets/option.png", 0, 0, 800, 640);
@@ -73,7 +69,6 @@ void OptionScreen::handleEvents(const Uint8* keystate, bool& start, bool& option
             arrow2->setypos(arrow2->getypos() - 133);
         }
         else if (keystate[SDL_SCANCODE_RETURN] && arrow->getypos() == 295 && arrow2->getypos() == 295) {//0-0
-            //cout << "0,0" << endl;
             start = true;
             option = false;
             target = false;
@@ -136,11 +131,6 @@ void OptionScreen::handleEvents(const Uint8* keystate, bool& start, bool& option
             p1 = 2;
             p2 = 2;
         }
-        /*if (keystate[SDL_SCANCODE_RETURN] && arrow2->getypos() == 0) {
-            start = false;
-            option = false;
-            target = false;
-        }*/
         break;
     case SDL_KEYUP:
         break;
@@ -158,11 +148,8 @@ void OptionScreen::update() {
 void OptionScreen::render()
 {
     SDL_RenderClear(renderer);
-    // this is where we put things to render
     screen->Render();
     arrow->Render();
     arrow2->Render();
-    //SDL_RenderCopy(Game::renderer, objTexture, &srcR, &destR);
-    //SDL_RenderCopy(Game::renderer, objTexture2, &srcR2, &destR2);
     SDL_RenderPresent(renderer);
 }

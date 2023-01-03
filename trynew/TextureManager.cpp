@@ -8,9 +8,6 @@ SDL_Texture* TextureManager::LoadTexture(const char* texture) {
 	SDL_FreeSurface(tmpsurface);
 	return text;
 }
-void TextureManager::Draw(SDL_Texture* text, SDL_Rect src, SDL_Rect dest) {
-	SDL_RenderCopy(Game::renderer, text, &src, &dest);
-}
 SDL_Texture* TextureManager::loadFont(const string& text,const char* color){
     const char* str = text.c_str();
     if (!TTF_WasInit()) {

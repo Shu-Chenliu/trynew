@@ -12,26 +12,15 @@ TargetScreen::TargetScreen(SDL_Renderer* _renderer, string st1,const char* color
     cout << "targetScreen constructor()!" << endl;
     const char* texture1 = st1.c_str();
     objTexture1 = TextureManager::loadFont(texture1, color);
-    //objTexture2 = TextureManager::LoadTexture("targetscore.png");
-    //const char* texture2 = "target score :";
-    //objTexture2 = TextureManager::loadFont(texture2, color);
     screen = new GameObject("assets/targetscore.png", 0, 0, 800, 640);
     srcR1.x = 0;
     srcR1.y = 0;
     srcR1.w = 40;
     srcR1.h = 50;
     destR1.x = 150;
-    destR1.y = 100;
+    destR1.y = 200;
     destR1.w = 150;
     destR1.h = 250;
-    srcR2.x = 0;
-    srcR2.y = 0;
-    srcR2.w = 400;
-    srcR2.h = 50;
-    destR2.x = 150;
-    destR2.y = 0;
-    destR2.w = 400;
-    destR2.h = 100;
 }
 
 TargetScreen::~TargetScreen()
@@ -77,8 +66,6 @@ void TargetScreen::render()
     SDL_RenderClear(renderer);
     // this is where we put things to render
     screen->Render();
-    //arrow->Render();
     SDL_RenderCopy(Game::renderer, objTexture1, &srcR1, &destR1);
-    SDL_RenderCopy(Game::renderer, objTexture2, &srcR2, &destR2);
     SDL_RenderPresent(renderer);
 }

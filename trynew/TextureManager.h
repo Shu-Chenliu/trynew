@@ -5,7 +5,6 @@
 using namespace std;
 class TextureManager {
 public:
-	static SDL_Texture* LoadTexture(const char* filename);
-	static void Draw(SDL_Texture* text, SDL_Rect src, SDL_Rect dest);
-	static SDL_Texture* loadFont(const string& text,const char* color);
+	static SDL_Texture* LoadTexture(const char* filename);//load picture
+	static SDL_Texture* loadFont(const string& text,const char* color);//load ttf
 };

@@ -1,8 +1,7 @@
-#include "Game.h"//1
+#include "Game.h"
 #include<iostream>
-#include"TextureManager.h"//2
-#include"GameObject.h"//3
-//#include"Map.h"//4
+#include"TextureManager.h"
+#include"GameObject.h"
 #include"Ball.h"
 #include"Player.h"
 #include"Score.h"
@@ -11,8 +10,6 @@
 #include"TargetScore.h"
 #include"Background.h"
 using namespace std;
-//SDL_Texture* playertex;
-//SDL_Rect srcR, destR;
 GameObject* background;
 Player* player;
 Player* enemy;
@@ -23,8 +20,6 @@ StartScreen* screen;
 OptionScreen* op;
 TargetScreen* tg;
 BackgroundScreen* b;
-//Map* map;
-//bool key[322] = { false };
 SDL_Renderer* Game::renderer = nullptr;
 const Uint8* keystate = SDL_GetKeyboardState(NULL);
 Game::Game() {
@@ -53,19 +48,13 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		}
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer) {
-			SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+			SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);//預設背景顏色
 			cout << "renderer created" << endl;
 		}
 		isrunning = true;
-		//SDL_Surface* surface = IMG_Load("assets/player.png");
-		//playertex = SDL_CreateTextureFromSurface(renderer, surface);
-		//SDL_FreeSurface(surface);
-		// 
-		//playertex = TextureManager::LoadTexture("assets/player.png", renderer);
 		
-		ball = new Ball("assets/ball-remove.png", 200, 0,474,474);
+		ball = new Ball("assets/ball-remove.png", 600, 0,474,474);
 		
-		//map = new Map();
 		score1 = new Score("0", 10,10,50, 50,"black");
 		score2 = new Score("0", 725, 10, 50, 50,"red");
 		screen = new StartScreen(renderer,"target score","option","start","black");
@@ -83,6 +72,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		cout << "music-on" << endl;
 		bgm = Mix_LoadMUS("assets/start_music.ogg");
 		play_mus = Mix_LoadMUS("assets/play_music.ogg");
+		winsound = Mix_LoadMUS("assets/winsound.ogg");
 		Mix_VolumeMusic(70);
 	}
 }
@@ -109,7 +99,6 @@ void Game::handleevents() {
 		enemy->move(keystate);
 		break;
 	case SDL_KEYUP:
-		//key[event.key.keysym.sym] = false;
 		player->stop(keystate);
 		enemy->stop(keystate);
 		break;
@@ -129,7 +118,7 @@ void Game::update() {
 	ball->checkCollision(player, enemy, keystate);
 	if (ball->touchground()) {
 		ball->reset();
-		SDL_Delay(100);
+		SDL_Delay(100);//讓場之間有間隔
 		if (ball->getwin() == 'l') {
 			score1->Update();
 		}
@@ -139,11 +128,9 @@ void Game::update() {
 	}
 }
 void Game::render() {
-	cout << "render" << endl;
+	//cout << "render" << endl;
 	SDL_RenderClear(renderer);
-	//map->DrawMap();
 	background->Render();
-	//SDL_RenderCopy(renderer, playertex, NULL, &destR);
 	player->Render();
 	enemy->Render();
 	ball->Render();
@@ -152,7 +139,7 @@ void Game::render() {
 	SDL_RenderCopy(renderer, objTexture1, &srcR, &destR);
 	SDL_RenderPresent(renderer);
 	if (isrunning == false) {
-		SDL_Delay(4000);
+		SDL_Delay(4000);//暫停贏家畫面
 	}
 }
 void Game::clean() {
@@ -162,6 +149,8 @@ void Game::clean() {
 	bgm = NULL;
 	Mix_FreeMusic(play_mus);
 	play_mus = NULL;
+	Mix_FreeMusic(winsound);
+	winsound = NULL;
 	SDL_Quit();
 	Mix_Quit();
 	cout << "game cleaned" << endl;
@@ -233,13 +222,15 @@ int Game::loadscore2() {
 	return score2->score();
 }
 void Game::end() {
-	cout << "end" << endl;
+	//cout << "end" << endl;
 	if (loadTarget() == loadscore1()) {
 		objTexture1 = TextureManager::loadFont("player1 wins!!", "black");
+		Mix_PlayMusic(winsound, 0);
 		cout << "player1" << endl;
 	}
 	else if (loadTarget() == loadscore2()) {
 		objTexture1 = TextureManager::loadFont("player2 wins!!", "black");
+		Mix_PlayMusic(winsound, 0);
 		cout << "player2" << endl;
 	}
 	isrunning = false;

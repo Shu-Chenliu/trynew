@@ -3,7 +3,6 @@
 #include<iostream>
 using namespace std;
 GameObject::GameObject(const char* texturesheet, int x, int y,int w,int h) {
-	//renderer = ren;
 	objTexture = TextureManager::LoadTexture(texturesheet);
 	xpos = x;
 	ypos = y;
@@ -18,7 +17,7 @@ GameObject::GameObject(const char* texturesheet, int x, int y,int w,int h) {
     xVel = 0;
     yVel = 0;
 }
-GameObject::GameObject(const char* texturesheet, int x, int y, int w, int h,double ww,double hh) {
+GameObject::GameObject(const char* texturesheet, int x, int y, int w, int h, double ww, double hh) {
 	objTexture = TextureManager::LoadTexture(texturesheet);
 	xpos = x;
 	ypos = y;
@@ -47,10 +46,4 @@ void GameObject::Render() {
 }
 bool GameObject::touchground() {
 	return false;
-}
-void GameObject::reset() {
-	return;
-}
-char GameObject::getwin() {
-	return ' ';
 }
